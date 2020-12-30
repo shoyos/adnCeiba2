@@ -1,4 +1,4 @@
-package adn.ceiba.consignataria2;
+package adn.ceiba.consignataria;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

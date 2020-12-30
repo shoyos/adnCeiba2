@@ -1,24 +1,36 @@
 package adn.ceiba.consignataria.dominio.servicio;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-import adn.ceiba.consignataria.dominio.Repositorio.IRepositorioAutomovil;
-import adn.ceiba.consignataria.dominio.model.Automovil;
-import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
+import adn.ceiba.consignataria.dominio.model.Automovil;
+import adn.ceiba.consignataria.dominio.repositorio.RepositorioAutomovil;
+import adn.ceiba.consignataria.infraestructura.persistencia.entidad.AutomovilEntity;
+
+
+@Component
 public class ServicioCrearAutomovil {
 	
-	private final IRepositorioAutomovil repositorioAutomovil;
+	private final RepositorioAutomovil repositorioAutomovil;
     private final static int MAXKILOMETRAJEXANIO = 20000;
     private final static int PRECIOPUBLICACION = 15000;
     private final static int COSTOEXTRA = 15000; 
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    
+    public ServicioCrearAutomovil(RepositorioAutomovil repositorioAutomovil ) {
+    	this.repositorioAutomovil = repositorioAutomovil;
+		// TODO Auto-generated constructor stub
+	}
 
 
     private boolean esPublicacionEstandar = false;
     
-	public void crear(Automovil automovil) {
+	public void ejecutar(Automovil automovil) {
+		
 		automovil.setFechaFinal(calcularFechaFinPublicacion(automovil.getFechaInicio(), automovil.getIdTipoPublicacion() ));
 		automovil.setValorVentaCalculado(automovil.getValorVenta());
 		if (tieneSoatVencido(automovil.getFechaInicio())) {
@@ -30,8 +42,15 @@ public class ServicioCrearAutomovil {
 		if(this.esPublicacionEstandar) {
 			automovil.setPrecioPublicacion(PRECIOPUBLICACION );
 		} else automovil.setPrecioPublicacion(PRECIOPUBLICACION + COSTOEXTRA );
+		System.out.println("Paso ejecutar Servicio");
 
-		repositorioAutomovil.crear(automovil);
+
+		AutomovilEntity automovilEntity = repositorioAutomovil.obtenerAutomovilById(automovil.getPlaca());
+		if (automovilEntity == null) {
+			repositorioAutomovil.crear(automovil);
+		} else {
+			repositorioAutomovil.actualizar(automovil);
+		}
 	}
 	
 	public LocalDate calcularFechaFinPublicacion(LocalDate fechaInicio, int idTipoPublicacion) {

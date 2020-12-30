@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "Automoviles")
-//@NamedQuery(name = "Automovil.findByDocumentoCliente", query = "SELECT credito FROM Creditos credito WHERE credito.documentoCliente = :documentoCliente AND credito.estado = true")
+@NamedQuery(name = "Automovil.findAll", query = "SELECT automovil FROM Automoviles automovil")
 public class AutomovilEntity {
 	@Id
 	private String placa;
@@ -36,7 +36,7 @@ public class AutomovilEntity {
 	@Column(name = "modelo")
 	private int modelo;
 	
-	@Column(name = "valorenta")
+	@Column(name = "valorventa")
 	private int valorVenta;
 
 	@Column(name = "valorventacalculado")
@@ -48,7 +48,7 @@ public class AutomovilEntity {
 	@Column(name = "fechafinal")
 	private LocalDate fechafinal;
 	
-	@Column(name = "precioPublicacion")
+	@Column(name = "preciopublicacion")
 	private int precioPublicacion;
 
 }

@@ -8,26 +8,23 @@ import adn.ceiba.consignataria.aplicacion.comando.ComandoAutomovil;
 import adn.ceiba.consignataria.aplicacion.fabrica.FabricaAutomovil;
 import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
-
+import adn.ceiba.consignataria.dominio.servicio.ServicioEliminarAutomovil;
 
 @Component
-public class ManejadorCrearAutomovil {
+public class ManejadorEliminarAutomovil {
 	
-	private final ServicioCrearAutomovil servicioCrearAutomovil;
+	private final ServicioEliminarAutomovil servicioEliminarAutomovil;
 	private final FabricaAutomovil fabricaAutomovil;
 	
-	public ManejadorCrearAutomovil( ServicioCrearAutomovil servicioCrearAutomovil, FabricaAutomovil fabricaAutomovil ) {
+	public ManejadorEliminarAutomovil( ServicioEliminarAutomovil servicioEliminarAutomovil, FabricaAutomovil fabricaAutomovil ) {
 		// TODO Auto-generated constructor stub
-		this.servicioCrearAutomovil = servicioCrearAutomovil;
+		this.servicioEliminarAutomovil = servicioEliminarAutomovil;
 		this.fabricaAutomovil = fabricaAutomovil;
 	}
 
 	@Transactional
-	public void ejecutar(ComandoAutomovil comandoAutomovil) {
-		Automovil automovil = this.fabricaAutomovil.crear(comandoAutomovil);
-		System.out.println("Paso ejecutar comandoAutomovil");
-		this.servicioCrearAutomovil.ejecutar(automovil);
+	public void ejecutar(String idPlaca ) {
+		this.servicioEliminarAutomovil.ejecutar(idPlaca);
 	}
 
 }
-
