@@ -12,31 +12,27 @@ import adn.ceiba.consignataria.dominio.model.Publicacion;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearPublicacion;
 
-
 @Component
-public class ManejadorCrearAutomovil {
+public class ManejadorCrearPublicacion {
 	
-	private final ServicioCrearAutomovil servicioCrearAutomovil;
 	private final ServicioCrearPublicacion servicioCrearPublicacion;
-	private final FabricaAutomovil fabricaAutomovil;
 	private final FabricaPublicacion fabricaPublicacion;
+	private final FabricaAutomovil fabricaAutomovil;
 
 	
-	public ManejadorCrearAutomovil( ServicioCrearAutomovil servicioCrearAutomovil, FabricaAutomovil fabricaAutomovil,  
-			FabricaPublicacion fabricaPublicacion, ServicioCrearPublicacion servicioCrearPublicacion  ) {
+	public ManejadorCrearPublicacion(FabricaPublicacion fabricaPublicacion, ServicioCrearPublicacion servicioCrearPublicacion,
+			 FabricaAutomovil fabricaAutomovil) {
 		
-		this.servicioCrearAutomovil = servicioCrearAutomovil;
-		this.fabricaAutomovil = fabricaAutomovil;
 		this.fabricaPublicacion = fabricaPublicacion;
 		this.servicioCrearPublicacion = servicioCrearPublicacion;
+		this.fabricaAutomovil = fabricaAutomovil;
 	}
 
 	@Transactional
 	public void ejecutar(ComandoPublicacion comandoAutomovil) {
 		System.out.println("Paso ejecutar comandoAutomovil");
-		Automovil automovil = this.fabricaAutomovil.crear(comandoAutomovil);
-	    this.servicioCrearAutomovil.ejecutar(automovil);
+		//Automovil automovil = this.fabricaAutomovil.crear(comandoAutomovil);
+		Publicacion publicacion = this.fabricaPublicacion.crear(comandoAutomovil);		
+	    this.servicioCrearPublicacion.ejecutar(publicacion);
 	}
-
 }
-

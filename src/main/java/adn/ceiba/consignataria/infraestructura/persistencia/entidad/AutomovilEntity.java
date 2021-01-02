@@ -13,7 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "Automoviles")
-@NamedQuery(name = "Automovil.findAll", query = "SELECT automovil FROM Automoviles automovil")
 public class AutomovilEntity {
 	@Id
 	private String placa;
@@ -30,9 +29,6 @@ public class AutomovilEntity {
 	@Column(name = "fechavencimientosoat")
 	private LocalDate fechaVencimientoSoat;
 	
-	@Column(name = "idtipopublicacion")
-	private int idTipoPublicacion;
-	
 	@Column(name = "modelo")
 	private int modelo;
 	
@@ -42,13 +38,6 @@ public class AutomovilEntity {
 	@Column(name = "valorventacalculado")
 	private int valorVentaCalculado;
 	
-	@Column(name = "fechainicio")
-	private LocalDate fechaInicio;
 
-	@Column(name = "fechafinal")
-	private LocalDate fechafinal;
-	
-	@Column(name = "preciopublicacion")
-	private int precioPublicacion;
 
 }

@@ -16,9 +16,10 @@ public class ServicioEliminarAutomovil {
     public ServicioEliminarAutomovil(RepositorioAutomovil repositorioAutomovil ) {
     	this.repositorioAutomovil = repositorioAutomovil;
 	}
-    
-	public void ejecutar(String idPlaca) {
-		this.repositorioAutomovil.eliminar(idPlaca);
-	}
+    /*
+	public void ejecutar(int idPublicacion) {
+		
+		this.repositorioAutomovil.ob(idPlaca);
+	}*/
 
 }

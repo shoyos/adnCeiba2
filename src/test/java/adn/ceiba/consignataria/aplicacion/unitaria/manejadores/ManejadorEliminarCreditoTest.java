@@ -2,8 +2,8 @@ package adn.ceiba.consignataria.aplicacion.unitaria.manejadores;
 
 import static org.mockito.Mockito.times;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -22,9 +22,9 @@ public class ManejadorEliminarCreditoTest {
 	@InjectMocks
 	ManejadorEliminarAutomovil manejadorEliminarAutomovil;
 
-	@Before
+	@BeforeAll
 	public void init() {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		Mockito.doNothing().when(servicioEliminarAutomovil).ejecutar(PLACA);
 
 	}

@@ -16,75 +16,60 @@ public class ServicioCrearAutomovil {
 	
 	private final RepositorioAutomovil repositorioAutomovil;
     private final static int MAXKILOMETRAJEXANIO = 20000;
-    private final static int PRECIOPUBLICACION = 15000;
-    private final static int COSTOEXTRA = 15000; 
+
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     
     public ServicioCrearAutomovil(RepositorioAutomovil repositorioAutomovil ) {
     	this.repositorioAutomovil = repositorioAutomovil;
-		// TODO Auto-generated constructor stub
 	}
-
-
-    private boolean esPublicacionEstandar = false;
     
 	public void ejecutar(Automovil automovil) {
-		
-		automovil.setFechaFinal(calcularFechaFinPublicacion(automovil.getFechaInicio(), automovil.getIdTipoPublicacion() ));
+		System.out.println("Paso ejecutar Servicio automovil");
+
 		automovil.setValorVentaCalculado(automovil.getValorVenta());
-		if (tieneSoatVencido(automovil.getFechaInicio())) {
+		if (tieneSoatVencido(automovil.getFechaVencimientoSoat())) {
 			automovil.setValorVentaCalculado(automovil.getValorVentaCalculado() - ( (automovil.getValorVenta() * 5) / 100 ) );
 		} else if (tieneExcesoKilometraje(automovil.getKilometraje(), automovil.getModelo())) {
 			automovil.setValorVentaCalculado(automovil.getValorVentaCalculado() - ( (automovil.getValorVenta() * 7) / 100 ));
 		}
-		
-		if(this.esPublicacionEstandar) {
-			automovil.setPrecioPublicacion(PRECIOPUBLICACION );
-		} else automovil.setPrecioPublicacion(PRECIOPUBLICACION + COSTOEXTRA );
-		System.out.println("Paso ejecutar Servicio");
-
-
-		AutomovilEntity automovilEntity = repositorioAutomovil.obtenerAutomovilById(automovil.getPlaca());
-		if (automovilEntity == null) {
+	
+		Automovil automovilExiste = repositorioAutomovil.obtenerAutomovilById(automovil.getPlaca());
+		if (automovilExiste == null) {
 			repositorioAutomovil.crear(automovil);
 		} else {
 			repositorioAutomovil.actualizar(automovil);
 		}
 	}
 	
-	public LocalDate calcularFechaFinPublicacion(LocalDate fechaInicio, int idTipoPublicacion) {
-		LocalDate fechaFinPublicacion = fechaInicio;
-		if (idTipoPublicacion == 1) {
-			this.esPublicacionEstandar = true;
-			 fechaFinPublicacion = fechaInicio.plusDays(15);
-		} else if (idTipoPublicacion == 2) {
-			fechaFinPublicacion = fechaInicio.plusDays(30);
-		}
-		
-		return fechaFinPublicacion;
-	}
-	
-	public boolean tieneSoatVencido (LocalDate fechaInicio ) {
+
+	/*
+	 * Verifica si el soat esta vencido con respecto al dia actual
+	 * */
+	public boolean tieneSoatVencido (LocalDate fechaVenciminetoSoat ) {
 		LocalDate fechaHoy = LocalDate.now();
 		// Ocurre si fecha vencimiento soat < diaActual
-		if (fechaInicio.compareTo(fechaHoy) < 0) return true;
+		if (fechaVenciminetoSoat.compareTo(fechaHoy) < 0) return true;
 		else return false;
 		
 	}
 	
+	/*
+	 * Calcula si tiene exceso de kiloemtraje el automovil con respecto al modelo
+	 * */
 	public boolean tieneExcesoKilometraje(int kilometraje, int modelo) {
+		boolean tieneExcesoKilometraje = false;
 		int anioActual = Calendar.getInstance().get(Calendar.YEAR);
-		int aniosDiferencia = modelo - anioActual;
+		int aniosDiferencia = anioActual - modelo;
 		int cantidadMaximaPosibleKilometraje;
 		if (aniosDiferencia > 0 ) {
-			cantidadMaximaPosibleKilometraje = MAXKILOMETRAJEXANIO * aniosDiferencia;			
-		} else {
-			return false;
+			cantidadMaximaPosibleKilometraje = MAXKILOMETRAJEXANIO * aniosDiferencia;
+			if (kilometraje > cantidadMaximaPosibleKilometraje) {
+				tieneExcesoKilometraje = true;
+			}
 		}
-		if (kilometraje < cantidadMaximaPosibleKilometraje) return true; 
-		else return false;
-			
+		
+		return tieneExcesoKilometraje;
 	}
 	
 	

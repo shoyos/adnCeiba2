@@ -13,9 +13,8 @@ public final class AutomovilBuilder {
 		if (automovilEntity != null) {
 			automovil = new Automovil(automovilEntity.getPlaca(), automovilEntity.getNumeroMotor(), automovilEntity.getKilometraje(),
 					automovilEntity.getCilindraje(), automovilEntity.getFechaVencimientoSoat(),
-					automovilEntity.getIdTipoPublicacion(), automovilEntity.getModelo(), automovilEntity.getValorVenta(),
-					automovilEntity.getValorVentaCalculado(),automovilEntity.getFechaInicio(), automovilEntity.getFechafinal(),
-					automovilEntity.getPrecioPublicacion());
+					 automovilEntity.getModelo(), automovilEntity.getValorVenta(),
+					automovilEntity.getValorVentaCalculado() );
 		}
 
 		return automovil;
@@ -30,13 +29,13 @@ public final class AutomovilBuilder {
 		automovilEntity.setKilometraje(automovil.getKilometraje());
 		automovilEntity.setCilindraje(automovil.getCilindraje());
 		automovilEntity.setFechaVencimientoSoat(automovil.getFechaVencimientoSoat());
-		automovilEntity.setIdTipoPublicacion(automovil.getIdTipoPublicacion());
+		//automovilEntity.setIdTipoPublicacion(automovil.getIdTipoPublicacion());
 		automovilEntity.setModelo(automovil.getModelo());
 		automovilEntity.setValorVenta(automovil.getValorVenta());
 		automovilEntity.setValorVentaCalculado(automovil.getValorVentaCalculado());
-		automovilEntity.setFechaInicio(automovil.getFechaInicio());
-		automovilEntity.setFechafinal(automovil.getFechaFinal());
-		automovilEntity.setPrecioPublicacion(automovil.getPrecioPublicacion());
+		//automovilEntity.setFechaInicio(automovil.getFechaInicio());
+		//automovilEntity.setFechafinal(automovil.getFechaFinal());
+		//automovilEntity.setPrecioPublicacion(automovil.getPrecioPublicacion());
 
 		return automovilEntity;
 	}
