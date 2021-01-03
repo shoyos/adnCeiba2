@@ -54,6 +54,35 @@ public class AutomovilTestDataBuilder {
 		return this;
 	}
 	
+	public AutomovilTestDataBuilder conNumeroMotor(String numeroMotor) {
+		this.numeroMotor= numeroMotor;
+		return this;
+	}
+	
+	public AutomovilTestDataBuilder conKilometraje(int kilometraje) {
+		this.kilometraje= kilometraje;
+		return this;
+	}
+	
+	public AutomovilTestDataBuilder conCilindraje(int cilindraje) {
+		this.cilindraje= cilindraje;
+		return this;
+	}
+	
+	public AutomovilTestDataBuilder conModelo(int  modelo) {
+		this.modelo= modelo;
+		return this;
+	}
+	public AutomovilTestDataBuilder conFechaVenciminetoSoar(LocalDate fechaVencimientoSoat  ) {
+		this.fechaVencimientoSoat= fechaVencimientoSoat;
+		return this;
+	}
+	
+	public AutomovilTestDataBuilder conValorVenta(int valorVenta) {
+		this.valorVenta= valorVenta;
+		return this;
+	}
+	
 	public Automovil build() {
 		return new Automovil(this.placa, this.numeroMotor, this.kilometraje, this.cilindraje, this.fechaVencimientoSoat,
 			this.modelo, this.valorVenta, this.valorVentaCalculado );

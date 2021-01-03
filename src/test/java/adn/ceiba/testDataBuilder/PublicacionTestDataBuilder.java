@@ -36,8 +36,28 @@ public class PublicacionTestDataBuilder {
 
 	}
 	
-	public PublicacionTestDataBuilder conFechaPublicacion(LocalDate fechaInicio) {
+	public PublicacionTestDataBuilder conId(int id ) {
+		this.id= id;
+		return this;
+	}
+	
+	public PublicacionTestDataBuilder conIdTipoPublicacion(int idTipoPublicacion ) {
+		this.idTipoPublicacion= idTipoPublicacion;
+		return this;
+	}
+	
+	public PublicacionTestDataBuilder conFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio= fechaInicio;
+		return this;
+	}
+	
+	public PublicacionTestDataBuilder conFechaFinal(LocalDate fechaFinal) {
+		this.fechaFinal= fechaFinal;
+		return this;
+	}
+	
+	public PublicacionTestDataBuilder conPrecioPublicacion(int precioPublicacion ) {
+		this.precioPublicacion= precioPublicacion;
 		return this;
 	}
 	

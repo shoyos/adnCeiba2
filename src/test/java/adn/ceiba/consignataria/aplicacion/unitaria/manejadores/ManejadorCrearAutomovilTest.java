@@ -36,8 +36,17 @@ public class ManejadorCrearAutomovilTest {
 	public static final ComandoPublicacion COMANDO = new ComandoPublicacion();
 	public static final FabricaAutomovil FABRICA_AUTOMOVIL = new FabricaAutomovil();
 	
-	public static  AutomovilTestDataBuilder automovilTest = new AutomovilTestDataBuilder();
-	public static  Automovil AUTOMOVIL = automovilTest.build() ;
+	//public static  AutomovilTestDataBuilder automovilTest = new AutomovilTestDataBuilder();
+	//public static  Automovil AUTOMOVIL= automovilTest.build() ;
+	AutomovilTestDataBuilder automovilTestBuilder = new AutomovilTestDataBuilder().conPlaca(PLACA)
+			.conNumeroMotor(NUMMOTOR)
+			.conCilindraje(CILINDRAJE)
+			.conKilometraje(KILOMETRAJE)
+			.conModelo(MODELO)
+			.conFechaVenciminetoSoar(FECHAVENCIMIENTOSOAT)
+			.conValorVenta(VALORVENTA);
+	
+	Automovil AUTOMOVIL = automovilTestBuilder.build();
  
 
 	@Mock
@@ -65,6 +74,7 @@ public class ManejadorCrearAutomovilTest {
 		COMANDO.setValorVenta(VALORVENTA);
 		COMANDO.setValorVentaCalculado(VALORVENTACALCULADO);
 		
+		/*
 		automovilTest.setPlaca(PLACA);
 		automovilTest.setNumeroMotor(NUMMOTOR);
 		automovilTest.setCilindraje(CILINDRAJE);
@@ -72,6 +82,7 @@ public class ManejadorCrearAutomovilTest {
 		automovilTest.setFechaVencimientoSoat(FECHAVENCIMIENTOSOAT);
 
 		AUTOMOVIL = automovilTest.build();
+		*/
 		
 		Mockito.when(fabricaAutomovil.crear(COMANDO)).thenReturn(AUTOMOVIL);
 		Mockito.doNothing().when(servicioCrearAutomovil).ejecutar(AUTOMOVIL);
@@ -79,6 +90,7 @@ public class ManejadorCrearAutomovilTest {
 	
 	@Test
 	public void ejecutarTest() {
+		
 		Automovil automovil = fabricaAutomovil.crear(COMANDO);
 
 		assertEquals(PLACA, automovil.getPlaca());

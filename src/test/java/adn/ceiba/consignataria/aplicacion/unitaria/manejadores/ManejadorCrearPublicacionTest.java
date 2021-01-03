@@ -34,11 +34,15 @@ public class ManejadorCrearPublicacionTest {
 	private static final LocalDate FECHAFINAL = LocalDate.of(2020, 12, 29);
 	private static final int PRECIO_PUBLICACION = 15000;
 
-	public static final ComandoPublicacion COMANDO = new ComandoPublicacion();
-	public static final FabricaPublicacion FABRICA_PUBLICACION = new FabricaPublicacion();
+	private static final ComandoPublicacion COMANDO = new ComandoPublicacion();
 	
-	public static  PublicacionTestDataBuilder publicacionTest = new PublicacionTestDataBuilder();
-	public static  Publicacion PUBLICACION = publicacionTest.build() ;
+	private   PublicacionTestDataBuilder publicacionTest = new PublicacionTestDataBuilder().conId(ID)
+			.conFechaInicio(FECHAINICIO)
+			.conFechaFinal(FECHAFINAL)
+			.conIdTipoPublicacion(IDTIPOPUBLICACION)
+			.conPrecioPublicacion(PRECIO_PUBLICACION);
+	
+	private  Publicacion PUBLICACION = publicacionTest.build() ;
  
 
 	@Mock
@@ -62,6 +66,7 @@ public class ManejadorCrearPublicacionTest {
 		COMANDO.setFechaFinal(FECHAFINAL);
 		COMANDO.setPrecioPublicacion(PRECIO_PUBLICACION);
 
+		/*
 		publicacionTest.setId(ID);
 		publicacionTest.setIdTipoPublicacion(IDTIPOPUBLICACION);
 		publicacionTest.setIdAutomovil(ID_AUTOMOVIL);
@@ -70,6 +75,7 @@ public class ManejadorCrearPublicacionTest {
 		publicacionTest.setPrecioPublicacion(PRECIO_PUBLICACION);
 
 		PUBLICACION = publicacionTest.build();
+		*/
 		
 		Mockito.when(fabricaPublicacion.crear(COMANDO)).thenReturn(PUBLICACION);
 		Mockito.doNothing().when(servicioCrearPublicacion).ejecutar(PUBLICACION);
