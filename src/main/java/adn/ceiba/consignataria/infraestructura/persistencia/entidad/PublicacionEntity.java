@@ -19,6 +19,7 @@ import lombok.Setter;
 @Setter
 @Entity(name = "Publicaciones")
 @NamedQuery(name = "Publicacion.findAll", query = "SELECT publicacion FROM Publicaciones publicacion")
+@NamedQuery(name = "Publicacion.findById", query = "SELECT publicacion FROM Publicaciones publicacion WHERE publicacion.idAutomovil = :idPlaca")
 public class PublicacionEntity {
 	
    @Id 

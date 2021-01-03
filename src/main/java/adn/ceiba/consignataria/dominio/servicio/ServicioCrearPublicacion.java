@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
+import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.model.Publicacion;
 import adn.ceiba.consignataria.dominio.repositorio.RepositorioPublicacion;
 
@@ -25,10 +26,16 @@ public class ServicioCrearPublicacion {
 		publicacion.setFechaFinal(calcularFechaFinPublicacion(publicacion.getFechaInicio(), publicacion.getIdTipoPublicacion() ));
 		if(this.esPublicacionEstandar) {
 			publicacion.setPrecioPublicacion(PRECIOPUBLICACION );
-		} else publicacion.setPrecioPublicacion(PRECIOPUBLICACION + COSTOEXTRA );
+		} else {
+			publicacion.setPrecioPublicacion(PRECIOPUBLICACION + COSTOEXTRA );
+		}
 		
-		repositorioPublicacion.crear(publicacion);
-				
+		Publicacion publicacionExiste = repositorioPublicacion.obtenerPublicacionByIdAutomovil(publicacion.getIdAutomovil());
+		if (publicacionExiste == null) {
+			repositorioPublicacion.crear(publicacion);
+		} else {
+			repositorioPublicacion.actualizar(publicacion);
+		}
 	}
 	
 	public LocalDate calcularFechaFinPublicacion(LocalDate fechaInicio, int idTipoPublicacion) {
@@ -38,6 +45,7 @@ public class ServicioCrearPublicacion {
 			 fechaFinPublicacion = fechaInicio.plusDays(15);
 		} else if (idTipoPublicacion == 2) {
 			fechaFinPublicacion = fechaInicio.plusDays(30);
+			this.esPublicacionEstandar = false;
 		}
 		
 		return fechaFinPublicacion;

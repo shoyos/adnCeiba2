@@ -1,14 +1,12 @@
 package adn.ceiba.consignataria.dominio.servicio;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 import org.springframework.stereotype.Component;
-
+import adn.ceiba.consignataria.dominio.excepcion.AutomovilExcepcion;
 import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.repositorio.RepositorioAutomovil;
-import adn.ceiba.consignataria.infraestructura.persistencia.entidad.AutomovilEntity;
 
 
 @Component
@@ -16,8 +14,9 @@ public class ServicioCrearAutomovil {
 	
 	private final RepositorioAutomovil repositorioAutomovil;
     private final static int MAXKILOMETRAJEXANIO = 20000;
-
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final static String PLACA = "LA PLACA DEBE TENER MAXIMO 6 DIGITOS";
+    private final static String KILOMETRAJE_NEGATIVO = "EL KILOMETRAJE DEBE SER > 0";
+    private final static String FALTA_SOAT = "LA FECHA DEL SOAT ES REQUERIDA";
 
     
     public ServicioCrearAutomovil(RepositorioAutomovil repositorioAutomovil ) {
@@ -26,11 +25,13 @@ public class ServicioCrearAutomovil {
     
 	public void ejecutar(Automovil automovil) {
 		System.out.println("Paso ejecutar Servicio automovil");
-
+		this.validarDatos(automovil);
 		automovil.setValorVentaCalculado(automovil.getValorVenta());
 		if (tieneSoatVencido(automovil.getFechaVencimientoSoat())) {
 			automovil.setValorVentaCalculado(automovil.getValorVentaCalculado() - ( (automovil.getValorVenta() * 5) / 100 ) );
-		} else if (tieneExcesoKilometraje(automovil.getKilometraje(), automovil.getModelo())) {
+		} 
+		
+		if (tieneExcesoKilometraje(automovil.getKilometraje(), automovil.getModelo())) {
 			automovil.setValorVentaCalculado(automovil.getValorVentaCalculado() - ( (automovil.getValorVenta() * 7) / 100 ));
 		}
 	
@@ -70,6 +71,17 @@ public class ServicioCrearAutomovil {
 		}
 		
 		return tieneExcesoKilometraje;
+	}
+	
+	public void validarDatos(Automovil automovil) {
+		if (automovil.getPlaca().length() > 6 || automovil.getPlaca().isEmpty()) {
+			throw new AutomovilExcepcion(PLACA);
+		} if (automovil.getKilometraje() < 0) {
+			throw new AutomovilExcepcion(KILOMETRAJE_NEGATIVO);
+
+		} if (automovil.getFechaVencimientoSoat() == null ) {
+			throw new AutomovilExcepcion(FALTA_SOAT);
+		}
 	}
 	
 	

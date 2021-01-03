@@ -49,6 +49,11 @@ public class AutomovilTestDataBuilder {
 		this.valorVentaCalculado = VALORVENTACALCULADO;
 	}
 	
+	public AutomovilTestDataBuilder conPlaca(String placa) {
+		this.placa= placa;
+		return this;
+	}
+	
 	public Automovil build() {
 		return new Automovil(this.placa, this.numeroMotor, this.kilometraje, this.cilindraje, this.fechaVencimientoSoat,
 			this.modelo, this.valorVenta, this.valorVentaCalculado );

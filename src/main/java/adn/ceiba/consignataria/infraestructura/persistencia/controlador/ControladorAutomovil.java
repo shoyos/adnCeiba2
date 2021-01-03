@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearAutomovil;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearPublicacion;
-import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorEliminarAutomovil;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorEliminarPublicacion;
-import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorObtenerAutomoviles;
+import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorObtenerPublicaciones;
 import adn.ceiba.consignataria.dominio.model.Automovil;
 
 //@CrossOrigin(origins = { "http://localhost:4200" })
@@ -31,18 +30,18 @@ public class ControladorAutomovil {
 	
 	private final ManejadorCrearAutomovil manejadorCrearAutomovil;
 	private final ManejadorCrearPublicacion manejadorCrearPublicacion;
-
-	private final ManejadorEliminarAutomovil manejadorEliminarAutomovil;
-	//private final ManejadorObtenerAutomoviles manejadorObtenerAutomoviles;
 	private final ManejadorEliminarPublicacion manejadorEliminarPublicacion;
+	private final ManejadorObtenerPublicaciones manejadorObtenerPublicacion;
+
 	
 	public ControladorAutomovil(ManejadorCrearAutomovil manejadorCrearAutomovil, 
-			ManejadorEliminarAutomovil manejadorEliminarAutomovil, 	ManejadorCrearPublicacion manejadorCrearPublicacion,
-			ManejadorEliminarPublicacion manejadorEliminarPublicacion) {
+			ManejadorCrearPublicacion manejadorCrearPublicacion,
+			ManejadorEliminarPublicacion manejadorEliminarPublicacion,
+			ManejadorObtenerPublicaciones manejadorObtenerPublicacion) {
 		this.manejadorCrearAutomovil = manejadorCrearAutomovil;
-		this.manejadorEliminarAutomovil = manejadorEliminarAutomovil;
 		this.manejadorCrearPublicacion = manejadorCrearPublicacion;
 		this.manejadorEliminarPublicacion = manejadorEliminarPublicacion;
+		this.manejadorObtenerPublicacion = manejadorObtenerPublicacion;
 	}
 	
 	//Crear
@@ -57,8 +56,9 @@ public class ControladorAutomovil {
 	//Update
 	@PostMapping("/actualizar")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void actualizar(@RequestBody ComandoPublicacion comandoAutomovil) {
-		this.manejadorCrearAutomovil.ejecutar(comandoAutomovil);
+	public void actualizar(@RequestBody ComandoPublicacion comandoPublicacion) {
+		this.manejadorCrearAutomovil.ejecutar(comandoPublicacion);
+		this.manejadorCrearPublicacion.ejecutar(comandoPublicacion);
 	}
 	
 	
@@ -69,11 +69,11 @@ public class ControladorAutomovil {
 		this.manejadorEliminarPublicacion.ejecutar(idPublicacion);
 	}
 	
-	/*
+	
 	@GetMapping("/obtenertodos")
 	public List<ComandoPublicacion> obtenerAutomoviles() {
-		return this.manejadorObtenerAutomoviles.ejecutar();
-	}*/
+		return this.manejadorObtenerPublicacion.ejecutar();
+	}
 
 
 

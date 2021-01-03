@@ -32,9 +32,9 @@ public class ManejadorCrearAutomovil {
 	}
 
 	@Transactional
-	public void ejecutar(ComandoPublicacion comandoAutomovil) {
+	public void ejecutar(ComandoPublicacion comandoPublicacion) {
 		System.out.println("Paso ejecutar comandoAutomovil");
-		Automovil automovil = this.fabricaAutomovil.crear(comandoAutomovil);
+		Automovil automovil = this.fabricaAutomovil.crear(comandoPublicacion);
 	    this.servicioCrearAutomovil.ejecutar(automovil);
 	}
 

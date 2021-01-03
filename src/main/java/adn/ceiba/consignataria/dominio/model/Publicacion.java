@@ -14,7 +14,6 @@ public class Publicacion {
 	
 	private @Setter int  idTipoPublicacion;
 	
-	//private @Setter Automovil automovil;
 	private @Setter String idAutomovil;
 	
 	private @Setter LocalDate fechaInicio;
@@ -23,16 +22,5 @@ public class Publicacion {
 	
 	private @Setter int precioPublicacion;
 	
-	/*
-	public Publicacion(int id, int idTipoPublicacion, Automovil automovil, LocalDate fechaInicio, LocalDate fechafinal, int precioPublicacion ) {
-		// TODO Auto-generated constructor stub
-		this.id = id;
-		this.idTipoPublicacion = idTipoPublicacion;
-		this.automovil = automovil;
-		this.fechaInicio = fechaInicio;
-		this.fechaFinal = fechafinal;
-		this.precioPublicacion = precioPublicacion;
-		
-	}*/
 
 }

@@ -1,18 +1,21 @@
 package adn.ceiba.dominio.unitaria.servicio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 
 import java.time.LocalDate;
 
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import adn.ceiba.consignataria.dominio.excepcion.AutomovilExcepcion;
 import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
 import adn.ceiba.consignataria.infraestructura.persistencia.repositorio.RepositorioAutomovilPersistente;
@@ -22,7 +25,7 @@ public class ServicioCrearAutomovilTest {
 	
 	private static final LocalDate FECHA_SOAT_VENCIDO = LocalDate.of(2020, 8, 15);
 	private static final int VALOR_VENTA_CALCULADO_SOATVENCIDO = 19000;
-	private static final int VALOR_VENTA_CALCULADO_MAXKILOMETRAJE = 18600;
+	private static final int VALOR_VENTA_CALCULADO_MAXKILOMETRAJE = 20000;
 	private static final int KILOMETRAJE = 21000;
 
 
@@ -35,7 +38,7 @@ public class ServicioCrearAutomovilTest {
 	@InjectMocks
 	ServicioCrearAutomovil servicioCrearAutomovil;
 	
-	@BeforeAll
+	@BeforeEach
 	public void init() {
 		//MockitoAnnotations.initMocks(this);
 		MockitoAnnotations.openMocks(this);
@@ -63,6 +66,20 @@ public class ServicioCrearAutomovilTest {
 		servicioCrearAutomovil.ejecutar(automovil);
 		assertEquals(VALOR_VENTA_CALCULADO_MAXKILOMETRAJE, automovil.getValorVentaCalculado());
 	}
+	
+	
+	@Test
+	public void crearAutomovilSinPlaca() {
+		
+	    assertThrows(AutomovilExcepcion.class,
+	            ()->{
+	        		Automovil autosinPlaca = automovilTestDataBuilder.conPlaca("ASDASDASASD2222").build();
+	            	servicioCrearAutomovil.ejecutar(autosinPlaca);
+	            //do whatever you want to do here
+	            //ex : objectName.thisMethodShoulThrowNullPointerExceptionForNullParameter(null);
+	            });
+	}
+	
 	
 	
 
