@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import adn.ceiba.consignataria.aplicacion.comando.ComandoAsesoria;
 import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
+import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearAsesoriaVenta;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearAutomovil;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearPublicacion;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorEliminarPublicacion;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorObtenerPublicaciones;
-import adn.ceiba.consignataria.dominio.model.Automovil;
 
-//@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/automoviles")
 public class ControladorAutomovil {
@@ -32,16 +32,19 @@ public class ControladorAutomovil {
 	private final ManejadorCrearPublicacion manejadorCrearPublicacion;
 	private final ManejadorEliminarPublicacion manejadorEliminarPublicacion;
 	private final ManejadorObtenerPublicaciones manejadorObtenerPublicacion;
+	private final ManejadorCrearAsesoriaVenta manejadorCrearAsesoriaVenta;
 
 	
 	public ControladorAutomovil(ManejadorCrearAutomovil manejadorCrearAutomovil, 
 			ManejadorCrearPublicacion manejadorCrearPublicacion,
 			ManejadorEliminarPublicacion manejadorEliminarPublicacion,
-			ManejadorObtenerPublicaciones manejadorObtenerPublicacion) {
+			ManejadorObtenerPublicaciones manejadorObtenerPublicacion,
+			ManejadorCrearAsesoriaVenta manejadorCrearAsesoriaVenta) {
 		this.manejadorCrearAutomovil = manejadorCrearAutomovil;
 		this.manejadorCrearPublicacion = manejadorCrearPublicacion;
 		this.manejadorEliminarPublicacion = manejadorEliminarPublicacion;
 		this.manejadorObtenerPublicacion = manejadorObtenerPublicacion;
+		this.manejadorCrearAsesoriaVenta = manejadorCrearAsesoriaVenta;
 	}
 	
 	//Crear
@@ -73,6 +76,12 @@ public class ControladorAutomovil {
 	@GetMapping("/obtenertodos")
 	public List<ComandoPublicacion> obtenerAutomoviles() {
 		return this.manejadorObtenerPublicacion.ejecutar();
+	}
+	
+	//Update
+	@PostMapping("/asesorias")
+	public void asesorias(@RequestBody ComandoAsesoria comando) {
+		this.manejadorCrearAsesoriaVenta.ejecutar(comando);
 	}
 
 

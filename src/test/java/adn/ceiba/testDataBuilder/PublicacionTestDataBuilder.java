@@ -17,7 +17,6 @@ public class PublicacionTestDataBuilder {
 	private static final LocalDate FECHAFINAL = LocalDate.of(2020, 12, 29);
 	private static final int PRECIO_PUBLICACION = 15000;
 
-
 	private int id;
 	private int idTipoPublicacion;
 	private String idAutomovil;
