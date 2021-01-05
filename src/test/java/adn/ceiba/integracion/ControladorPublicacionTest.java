@@ -3,22 +3,25 @@ package adn.ceiba.integracion;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import adn.ceiba.Consignataria2ApplicationTests;
 import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
 import adn.ceiba.testDataBuilder.ComandoTestDataBuilder;
 
-/*
-@AutoConfigureMockMvc
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorUsuario.class)
-*/
+
+@ExtendWith(SpringExtension.class)
+@WebMvcTest
+@SpringBootTest(classes = Consignataria2ApplicationTests.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ControladorPublicacionTest {
 	@Autowired
 	private ObjectMapper objectMapper;

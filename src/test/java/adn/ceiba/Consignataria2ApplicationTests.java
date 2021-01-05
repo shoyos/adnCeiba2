@@ -1,13 +1,13 @@
-/*package adn.ceiba;
+package adn.ceiba;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Consignataria2ApplicationTests {
+public class Consignataria2ApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
-}*/
+}
