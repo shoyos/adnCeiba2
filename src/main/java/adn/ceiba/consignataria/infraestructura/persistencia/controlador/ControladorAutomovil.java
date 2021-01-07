@@ -23,66 +23,48 @@ import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearPublicacion;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorEliminarPublicacion;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorObtenerPublicaciones;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+//@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
-@RequestMapping("/automoviles")
+@RequestMapping("/publicaciones")
 public class ControladorAutomovil {
 	
-	private final ManejadorCrearAutomovil manejadorCrearAutomovil;
 	private final ManejadorCrearPublicacion manejadorCrearPublicacion;
 	private final ManejadorEliminarPublicacion manejadorEliminarPublicacion;
 	private final ManejadorObtenerPublicaciones manejadorObtenerPublicacion;
-	private final ManejadorCrearAsesoriaVenta manejadorCrearAsesoriaVenta;
 
 	
-	public ControladorAutomovil(ManejadorCrearAutomovil manejadorCrearAutomovil, 
-			ManejadorCrearPublicacion manejadorCrearPublicacion,
+	public ControladorAutomovil(ManejadorCrearPublicacion manejadorCrearPublicacion,
 			ManejadorEliminarPublicacion manejadorEliminarPublicacion,
 			ManejadorObtenerPublicaciones manejadorObtenerPublicacion,
 			ManejadorCrearAsesoriaVenta manejadorCrearAsesoriaVenta) {
-		this.manejadorCrearAutomovil = manejadorCrearAutomovil;
+		
 		this.manejadorCrearPublicacion = manejadorCrearPublicacion;
 		this.manejadorEliminarPublicacion = manejadorEliminarPublicacion;
 		this.manejadorObtenerPublicacion = manejadorObtenerPublicacion;
-		this.manejadorCrearAsesoriaVenta = manejadorCrearAsesoriaVenta;
 	}
 	
 	//Crear
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public void agregar(@RequestBody ComandoPublicacion comandoPublicacion) {
-		this.manejadorCrearAutomovil.ejecutar(comandoPublicacion);
 		this.manejadorCrearPublicacion.ejecutar(comandoPublicacion);
 
 	}
 	
-	//Update
-	@PostMapping("/actualizar")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void actualizar(@RequestBody ComandoPublicacion comandoPublicacion) {
-		this.manejadorCrearAutomovil.ejecutar(comandoPublicacion);
-		this.manejadorCrearPublicacion.ejecutar(comandoPublicacion);
-	}
-	
-	
 	@DeleteMapping(value = "/{idPublicacion}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.OK)
 	public void eliminar(@PathVariable(name = "idPublicacion") int idPublicacion) {
-		
 		this.manejadorEliminarPublicacion.ejecutar(idPublicacion);
 	}
 	
 	
-	@GetMapping("/obtenertodos")
-	public List<ComandoPublicacion> obtenerAutomoviles() {
+	@GetMapping
+	@ResponseStatus(HttpStatus.OK)
+	public List<ComandoPublicacion> obtenerPublicaciones() {
 		return this.manejadorObtenerPublicacion.ejecutar();
 	}
 	
-	//Update
-	@PostMapping("/asesorias")
-	public void asesorias(@RequestBody ComandoAsesoria comando) {
-		this.manejadorCrearAsesoriaVenta.ejecutar(comando);
-	}
+
 
 
 

@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -14,14 +15,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import adn.ceiba.Consignataria2ApplicationTests;
 import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
 import adn.ceiba.testDataBuilder.ComandoTestDataBuilder;
 
 
-@ExtendWith(SpringExtension.class)
 @WebMvcTest
-@SpringBootTest(classes = Consignataria2ApplicationTests.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ExtendWith(SpringExtension.class)
+@SpringBootTest()
 public class ControladorPublicacionTest {
 	@Autowired
 	private ObjectMapper objectMapper;
@@ -31,11 +32,13 @@ public class ControladorPublicacionTest {
 	
 	@Test
 	public void agregar() throws Exception {
+		
 		ComandoPublicacion comando = new ComandoTestDataBuilder().build();
-		mvc.perform(MockMvcRequestBuilders.post("/automoviles")
+		mvc.perform(MockMvcRequestBuilders.post("/publicaciones")
 				.content(objectMapper.writeValueAsString(comando))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
+				
 	}
 
 }

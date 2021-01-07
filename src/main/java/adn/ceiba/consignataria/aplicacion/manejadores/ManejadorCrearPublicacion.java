@@ -17,22 +17,21 @@ public class ManejadorCrearPublicacion {
 	
 	private final ServicioCrearPublicacion servicioCrearPublicacion;
 	private final FabricaPublicacion fabricaPublicacion;
-	private final FabricaAutomovil fabricaAutomovil;
-
+	private final ManejadorCrearAutomovil manejadorCrearAutomovil;
 	
 	public ManejadorCrearPublicacion(FabricaPublicacion fabricaPublicacion, ServicioCrearPublicacion servicioCrearPublicacion,
-			 FabricaAutomovil fabricaAutomovil) {
+			 ManejadorCrearAutomovil manejadorCrearAutomovil ) {
 		
 		this.fabricaPublicacion = fabricaPublicacion;
 		this.servicioCrearPublicacion = servicioCrearPublicacion;
-		this.fabricaAutomovil = fabricaAutomovil;
+		this.manejadorCrearAutomovil = manejadorCrearAutomovil;
 	}
 
 	@Transactional
-	public void ejecutar(ComandoPublicacion comandoAutomovil) {
-		System.out.println("Paso ejecutar comandoAutomovil");
-		//Automovil automovil = this.fabricaAutomovil.crear(comandoAutomovil);
-		Publicacion publicacion = this.fabricaPublicacion.crear(comandoAutomovil);		
+	public void ejecutar(ComandoPublicacion comandoPublicacion) {
+		System.out.println("Paso ejecutar comandoPublicacion");
+		this.manejadorCrearAutomovil.ejecutar(comandoPublicacion);
+		Publicacion publicacion = this.fabricaPublicacion.crear(comandoPublicacion);		
 	    this.servicioCrearPublicacion.ejecutar(publicacion);
 	}
 }
