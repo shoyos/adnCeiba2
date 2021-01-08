@@ -1,28 +1,32 @@
-package adn.ceiba.integracion;
+package adn.ceiba.consignataria.integracion;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import adn.ceiba.consignataria.Consignataria2ApplicationTests;
 import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
-import adn.ceiba.testDataBuilder.ComandoTestDataBuilder;
+import adn.ceiba.consignataria.infraestructura.persistencia.controlador.ControladorAutomovil;
+import adn.ceiba.consignataria.testDataBuilder.ComandoTestDataBuilder;
 
 
-@WebMvcTest
+
+//@SpringBootTest()
+@WebMvcTest (ControladorAutomovil.class)
+@ContextConfiguration(classes= Consignataria2ApplicationTests.class)
 @AutoConfigureMockMvc
-@ExtendWith(SpringExtension.class)
-@SpringBootTest()
+
 public class ControladorPublicacionTest {
 	@Autowired
 	private ObjectMapper objectMapper;

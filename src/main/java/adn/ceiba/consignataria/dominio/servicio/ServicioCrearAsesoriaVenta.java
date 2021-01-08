@@ -4,7 +4,7 @@ import java.time.DayOfWeek;
 
 import org.springframework.stereotype.Component;
 
-import adn.ceiba.consignataria.dominio.excepcion.AsesoriaVentasExcepion;
+import adn.ceiba.consignataria.dominio.excepcion.AsesoriaVentasExcepcionFechaInvalida;
 import adn.ceiba.consignataria.dominio.model.AsesoriaVenta;
 import adn.ceiba.consignataria.dominio.repositorio.RepositorioAsesoriaVenta;
 
@@ -24,7 +24,7 @@ public class ServicioCrearAsesoriaVenta {
 
 	public void ejecutar(AsesoriaVenta asesoria) {
 		if (asesoria.getFecha().getDayOfWeek() == DayOfWeek.SUNDAY) { 
-			throw new AsesoriaVentasExcepion(FECHA_INVALIDA);
+			throw new AsesoriaVentasExcepcionFechaInvalida(FECHA_INVALIDA);
 		} else {
 			repositorioAsesoriaVenta.crear(asesoria);
 		}

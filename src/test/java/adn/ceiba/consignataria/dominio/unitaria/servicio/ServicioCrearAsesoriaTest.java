@@ -1,4 +1,4 @@
-package adn.ceiba.dominio.unitaria.servicio;
+package adn.ceiba.consignataria.dominio.unitaria.servicio;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
@@ -12,11 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import adn.ceiba.consignataria.dominio.excepcion.AsesoriaVentasExcepion;
+import adn.ceiba.consignataria.dominio.excepcion.AsesoriaVentasExcepcionFechaInvalida;
 import adn.ceiba.consignataria.dominio.model.AsesoriaVenta;
 import adn.ceiba.consignataria.dominio.repositorio.RepositorioAsesoriaVenta;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAsesoriaVenta;
-import adn.ceiba.testDataBuilder.AsesoriaTestDataBuilder;
+import adn.ceiba.consignataria.testDataBuilder.AsesoriaTestDataBuilder;
 
 public class ServicioCrearAsesoriaTest {
 	
@@ -48,7 +48,7 @@ public class ServicioCrearAsesoriaTest {
 	@Test
 	public void crearAsesoriaConFechaDomingoTest() {
 
-	    assertThrows(AsesoriaVentasExcepion.class,
+	    assertThrows(AsesoriaVentasExcepcionFechaInvalida.class,
 	            ()->{
 	            	AsesoriaVenta asesoriaVenta = asesoriaTestBuilder.conFecha(FECHA_DOMINGO).build();
 	            	servicioCrearAsesoriaVenta.ejecutar(asesoriaVenta);

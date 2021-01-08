@@ -1,26 +1,25 @@
 package adn.ceiba.consignataria.infraestructura.persistencia.repositorio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.repositorio.RepositorioAutomovil;
 import adn.ceiba.consignataria.infraestructura.persistencia.builder.AutomovilBuilder;
 import adn.ceiba.consignataria.infraestructura.persistencia.entidad.AutomovilEntity;
-import adn.ceiba.consignataria.infraestructura.persistencia.entidad.PublicacionEntity;
 
 @Repository
 public class RepositorioAutomovilPersistente implements RepositorioAutomovil {
-	
+	@PersistenceContext
 	private EntityManager entityManager;
 	private static final String PUBLICACION_FINDALL = "Publicacion.findAll";
 
-
+	@Autowired
 	public RepositorioAutomovilPersistente(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}

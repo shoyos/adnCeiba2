@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 import org.springframework.stereotype.Component;
-import adn.ceiba.consignataria.dominio.excepcion.AutomovilExcepcion;
+import adn.ceiba.consignataria.dominio.excepcion.AutomovilExcepcionBadRequest;
 import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.repositorio.RepositorioAutomovil;
 
@@ -75,12 +75,12 @@ public class ServicioCrearAutomovil {
 	
 	public void validarDatos(Automovil automovil) {
 		if (automovil.getPlaca().length() > 6 || automovil.getPlaca().isEmpty()) {
-			throw new AutomovilExcepcion(PLACA);
+			throw new AutomovilExcepcionBadRequest(PLACA);
 		} if (automovil.getKilometraje() < 0) {
-			throw new AutomovilExcepcion(KILOMETRAJE_NEGATIVO);
+			throw new AutomovilExcepcionBadRequest(KILOMETRAJE_NEGATIVO);
 
 		} if (automovil.getFechaVencimientoSoat() == null ) {
-			throw new AutomovilExcepcion(FALTA_SOAT);
+			throw new AutomovilExcepcionBadRequest(FALTA_SOAT);
 		}
 	}
 	

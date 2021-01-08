@@ -1,4 +1,4 @@
-package adn.ceiba.dominio.unitaria.servicio;
+package adn.ceiba.consignataria.dominio.unitaria.servicio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -15,11 +15,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import adn.ceiba.consignataria.dominio.excepcion.AutomovilExcepcion;
+import adn.ceiba.consignataria.dominio.excepcion.AutomovilExcepcionBadRequest;
 import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
 import adn.ceiba.consignataria.infraestructura.persistencia.repositorio.RepositorioAutomovilPersistente;
-import adn.ceiba.testDataBuilder.AutomovilTestDataBuilder;
+import adn.ceiba.consignataria.testDataBuilder.AutomovilTestDataBuilder;
 
 public class ServicioCrearAutomovilTest {
 	
@@ -71,7 +71,7 @@ public class ServicioCrearAutomovilTest {
 	@Test
 	public void crearAutomovilSinPlaca() {
 		
-	    assertThrows(AutomovilExcepcion.class,
+	    assertThrows(AutomovilExcepcionBadRequest.class,
 	            ()->{
 	        		Automovil autosinPlaca = automovilTestDataBuilder.conPlaca("ASDASDASASD2222").build();
 	            	servicioCrearAutomovil.ejecutar(autosinPlaca);

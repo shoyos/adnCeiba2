@@ -21,8 +21,8 @@ import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.model.Publicacion;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearPublicacion;
-import adn.ceiba.testDataBuilder.AutomovilTestDataBuilder;
-import adn.ceiba.testDataBuilder.PublicacionTestDataBuilder;
+import adn.ceiba.consignataria.testDataBuilder.AutomovilTestDataBuilder;
+import adn.ceiba.consignataria.testDataBuilder.PublicacionTestDataBuilder;
 
 public class ManejadorCrearPublicacionTest {
 	

@@ -1,7 +1,9 @@
 package adn.ceiba.consignataria.infraestructura.persistencia.repositorio;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import adn.ceiba.consignataria.dominio.model.AsesoriaVenta;
@@ -11,9 +13,10 @@ import adn.ceiba.consignataria.infraestructura.persistencia.entidad.AsesoriaVent
 
 @Repository
 public class RepositorioAsesoriaVentaPersistente implements RepositorioAsesoriaVenta {
-	
+	@PersistenceContext
 	private EntityManager entityManager;
 	
+	@Autowired
 	public RepositorioAsesoriaVentaPersistente(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}

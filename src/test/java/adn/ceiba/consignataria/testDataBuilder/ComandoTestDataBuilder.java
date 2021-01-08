@@ -1,4 +1,4 @@
-package adn.ceiba.testDataBuilder;
+package adn.ceiba.consignataria.testDataBuilder;
 
 import java.time.LocalDate;
 

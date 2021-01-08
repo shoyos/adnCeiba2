@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
@@ -18,11 +20,13 @@ import adn.ceiba.consignataria.infraestructura.persistencia.entidad.PublicacionE
 @Repository
 public class RepositorioPublicacionPersistente implements RepositorioPublicacion {
 	
+	@PersistenceContext
 	private EntityManager entityManager;
 	private static final String PUBLICACION_FINDALL = "Publicacion.findAll";
 	private static final String PUBLICACION_FINDBYID = "Publicacion.findById";
 	private RepositorioAutomovilPersistente repositorioAutomovil;
 
+	@Autowired
 	public RepositorioPublicacionPersistente (EntityManager entityManager, RepositorioAutomovilPersistente repositorioAutomovil) {
 		this.entityManager = entityManager;
 		this.repositorioAutomovil = repositorioAutomovil;

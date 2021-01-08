@@ -17,7 +17,7 @@ import adn.ceiba.consignataria.aplicacion.fabrica.FabricaAutomovil;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearAutomovil;
 import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
-import adn.ceiba.testDataBuilder.AutomovilTestDataBuilder;
+import adn.ceiba.consignataria.testDataBuilder.AutomovilTestDataBuilder;
 
 public class ManejadorCrearAutomovilTest {
 	
