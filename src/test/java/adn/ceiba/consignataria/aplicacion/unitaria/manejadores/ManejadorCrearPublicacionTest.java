@@ -13,21 +13,16 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
-import adn.ceiba.consignataria.aplicacion.fabrica.FabricaAutomovil;
 import adn.ceiba.consignataria.aplicacion.fabrica.FabricaPublicacion;
-import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearAutomovil;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearPublicacion;
-import adn.ceiba.consignataria.dominio.model.Automovil;
 import adn.ceiba.consignataria.dominio.model.Publicacion;
-import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearPublicacion;
-import adn.ceiba.consignataria.testDataBuilder.AutomovilTestDataBuilder;
 import adn.ceiba.consignataria.testDataBuilder.PublicacionTestDataBuilder;
 
 public class ManejadorCrearPublicacionTest {
 	
 
-	private static final int ID = 0;
+	private static final int ID = 1;
 	private static final int IDTIPOPUBLICACION = 1;
 	private static final String ID_AUTOMOVIL = "AA1";
 	private static final LocalDate FECHAINICIO = LocalDate.of(2020, 12, 29);
@@ -36,13 +31,13 @@ public class ManejadorCrearPublicacionTest {
 
 	private static final ComandoPublicacion COMANDO = new ComandoPublicacion();
 	
-	private   PublicacionTestDataBuilder publicacionTest = new PublicacionTestDataBuilder().conId(ID)
+	PublicacionTestDataBuilder publicacionTest = new PublicacionTestDataBuilder().conId(ID)
 			.conFechaInicio(FECHAINICIO)
 			.conFechaFinal(FECHAFINAL)
 			.conIdTipoPublicacion(IDTIPOPUBLICACION)
 			.conPrecioPublicacion(PRECIO_PUBLICACION);
 	
-	private  Publicacion PUBLICACION = publicacionTest.build() ;
+	Publicacion PUBLICACION = publicacionTest.build() ;
  
 
 	@Mock
@@ -65,17 +60,6 @@ public class ManejadorCrearPublicacionTest {
 		COMANDO.setFechaInicio(FECHAINICIO);
 		COMANDO.setFechaFinal(FECHAFINAL);
 		COMANDO.setPrecioPublicacion(PRECIO_PUBLICACION);
-
-		/*
-		publicacionTest.setId(ID);
-		publicacionTest.setIdTipoPublicacion(IDTIPOPUBLICACION);
-		publicacionTest.setIdAutomovil(ID_AUTOMOVIL);
-		publicacionTest.setFechaInicio(FECHAINICIO);
-		publicacionTest.setFechaFinal(FECHAFINAL);
-		publicacionTest.setPrecioPublicacion(PRECIO_PUBLICACION);
-
-		PUBLICACION = publicacionTest.build();
-		*/
 		
 		Mockito.when(fabricaPublicacion.crear(COMANDO)).thenReturn(PUBLICACION);
 		Mockito.doNothing().when(servicioCrearPublicacion).ejecutar(PUBLICACION);

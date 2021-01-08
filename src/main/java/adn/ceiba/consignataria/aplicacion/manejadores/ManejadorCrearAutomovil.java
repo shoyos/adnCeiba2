@@ -8,7 +8,6 @@ import adn.ceiba.consignataria.aplicacion.comando.ComandoPublicacion;
 import adn.ceiba.consignataria.aplicacion.fabrica.FabricaAutomovil;
 import adn.ceiba.consignataria.aplicacion.fabrica.FabricaPublicacion;
 import adn.ceiba.consignataria.dominio.model.Automovil;
-import adn.ceiba.consignataria.dominio.model.Publicacion;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearAutomovil;
 import adn.ceiba.consignataria.dominio.servicio.ServicioCrearPublicacion;
 

@@ -20,6 +20,7 @@ repositories {
 }
 
 apply plugin: 'jacoco'
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -30,13 +31,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	//testImplementation(platform('org.junit:junit-bom:5.7.0'))
-	//testImplementation('org.junit.jupiter:junit-jupiter')
+	testImplementation(platform('org.junit:junit-bom:5.7.0'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
 	
-	testCompile group: 'junit', name: 'junit', version: '4.13.1'
-	
-	
-	
+	//testCompile group: 'junit', name: 'junit', version: '4.13.1'
 }
 
 jacocoTestReport {
@@ -47,10 +45,6 @@ jacocoTestReport {
 }
 
 test {
-	finalizedBy jacocoTestReport
+  useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
 }
-
-/*
-test {
-	useJUnitPlatform()
-}*/

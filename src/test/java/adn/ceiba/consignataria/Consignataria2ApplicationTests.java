@@ -1,19 +1,19 @@
 package adn.ceiba.consignataria;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-
-@ComponentScan("adn.ceiba.consignataria")
+@SpringBootTest
 public class Consignataria2ApplicationTests {
-	
+	/*
 	@Bean
 	@Qualifier(value = "entityManager")
 	public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
 	    return entityManagerFactory.createEntityManager();
+	}*/
+	@Test
+	void main () {
+		Consignataria2Application.main( new String[] {});
 	}
 
 

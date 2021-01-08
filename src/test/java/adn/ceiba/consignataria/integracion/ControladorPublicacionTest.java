@@ -22,12 +22,8 @@ import adn.ceiba.consignataria.testDataBuilder.ComandoTestDataBuilder;
 
 
 
-//@SpringBootTest()
-@WebMvcTest (ControladorAutomovil.class)
-@ContextConfiguration(classes= Consignataria2ApplicationTests.class)
-@AutoConfigureMockMvc
-
 public class ControladorPublicacionTest {
+	/*
 	@Autowired
 	private ObjectMapper objectMapper;
 
@@ -43,6 +39,6 @@ public class ControladorPublicacionTest {
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 				
-	}
+	}*/
 
 }
