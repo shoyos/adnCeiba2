@@ -23,7 +23,7 @@ import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearPublicacion;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorEliminarPublicacion;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorObtenerPublicaciones;
 
-//@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/publicaciones")
 public class ControladorAutomovil {

@@ -10,11 +10,11 @@ public class Consignataria2ApplicationTests {
 	@Qualifier(value = "entityManager")
 	public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
 	    return entityManagerFactory.createEntityManager();
-	}*/
+	}
 	@Test
 	void main () {
 		Consignataria2Application.main( new String[] {});
-	}
+	}*/
 
 
 }

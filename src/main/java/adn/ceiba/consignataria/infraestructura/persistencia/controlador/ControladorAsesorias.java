@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import adn.ceiba.consignataria.aplicacion.comando.ComandoAsesoria;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearAsesoriaVenta;
 
-//@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/asesorias")
 public class ControladorAsesorias {
