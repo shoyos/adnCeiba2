@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import adn.ceiba.consignataria.aplicacion.comando.ComandoAsesoria;
 import adn.ceiba.consignataria.aplicacion.manejadores.ManejadorCrearAsesoriaVenta;
+import adn.ceiba.consignataria.infraestructura.persistencia.entidad.ClienteEntityMongo;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -30,5 +31,11 @@ public class ControladorAsesorias {
 	@ResponseStatus(HttpStatus.OK)
 	public void agregarASesorias(@RequestBody ComandoAsesoria comando) {
 		this.manejadorCrearAsesoriaVenta.ejecutar(comando);
+	}
+	
+	@PostMapping("/crear-cliente")
+	@ResponseStatus(HttpStatus.OK)
+	public void agregarCliente(@RequestBody ClienteEntityMongo cliente) {
+		this.manejadorCrearAsesoriaVenta.guardarCliente(cliente);
 	}
 }

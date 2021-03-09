@@ -24,6 +24,12 @@ apply plugin: 'jacoco'
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    
+    // https://mvnrepository.com/artifact/com.microsoft.azure/azure-cosmosdb
+	implementation group: 'com.microsoft.azure', name: 'azure-cosmosdb', version: '1.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	
 	
 	compile 'org.projectlombok:lombok'
 	implementation 'com.h2database:h2'
