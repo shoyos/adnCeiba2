@@ -25,7 +25,7 @@ public class ServicioCrearAutomovilTest {
 	
 	private static final LocalDate FECHA_SOAT_VENCIDO = LocalDate.of(2020, 8, 15);
 	private static final int VALOR_VENTA_CALCULADO_SOATVENCIDO = 19000;
-	private static final int VALOR_VENTA_CALCULADO_MAXKILOMETRAJE = 20000;
+	private static final int VALOR_VENTA_CALCULADO_MAXKILOMETRAJE = 19000;
 	private static final int KILOMETRAJE = 21000;
 
 
